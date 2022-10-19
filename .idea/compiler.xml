@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Ambientales Proyect" />
         <module name="Ambientales-Proyect" />
+        <module name="AmbientalesProyect" />
       </profile>
     </annotationProcessing>
   </component>
