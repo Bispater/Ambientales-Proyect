@@ -11,6 +11,8 @@ public class Main {
 
         // LECTURA ARCHIVO
         CSVFile archivo = new CSVFile();
+        //Hola soy byron
+        //sdhfysfsd
         archivo.leerArchivo("C:\\Users\\Felipe\\Desktop\\Ambientales Proyect\\src\\main\\resources\\CSVTEST.csv");
         CSVManage ob = new CSVManage();
         String[] header = { "Nombre", "Apellido"};
