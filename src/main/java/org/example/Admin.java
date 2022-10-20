@@ -130,7 +130,8 @@ public class Admin {
         do {
             System.out.println("===============MENU ADMINISTRADOR====================");
             System.out.println("ELIJA UNA OPCION:");
-            System.out.println("1) Mostrar puntos de reciclaje\n2) Agregar administrador\n3) Agregar punto de reciclaje\n4) Agregar noticia\n5) Presione 0 para salir");
+            System.out.println("1) Mostrar puntos de reciclaje\n2) Agregar administrador\n3) Agregar punto de reciclaje\n4) Agregar noticia\n5) Eliminar punto de reciclaje\n6) Eliminar noticia");
+            System.out.println("7) Presione 0 para salir");
             System.out.print("OPCION:");
             int opcion = entrada.nextInt();
 
@@ -154,6 +155,20 @@ public class Admin {
                         System.out.println("Se agrego exitosamente...");
                     }
                     break;
+                case 5:
+                    if(ptoNuevo.EliminarPtoReciclaje()){
+                        System.out.println("Se elimino el punto de reciclaje exitosamente...");
+                    }
+                    else {
+                        System.out.println("Punto de reciclaje inexistente, intente nuevamente...");
+                    }
+                case 6:
+                    if(NoticiaNueva.EliminarNoticia()){
+                        System.out.println("Se elimino la noticia exitosamente...");
+                    }
+                    else {
+                        System.out.println("Noticia inexistente, intente nuevamente...");
+                    }
                 default:
                     System.out.println("No se seleciono ninguna opcion valida, vuelva intentarlo");
                     break;

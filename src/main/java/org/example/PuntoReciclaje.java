@@ -174,4 +174,18 @@ public class PuntoReciclaje {
             System.out.println("Punto de reciclaje NO DISPONIBLE");
         }
     }
+    public boolean EliminarPtoReciclaje(){
+        int id;
+        System.out.println("===========================================");
+        System.out.println("Ingrese identificador del punto de reciclaje:");
+        id = leer.nextInt();
+
+        for(int i=0; i<puntosReciclaje.size(); i++){
+            if(puntosReciclaje.get(i).getId() == id){
+                puntosReciclaje.remove(puntosReciclaje.get(i));
+                return true;
+            }
+        }
+        return false;
+    }
 }
