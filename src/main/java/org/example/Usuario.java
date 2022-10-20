@@ -2,43 +2,25 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-public class Usuario {
-    //Atributos
-    private String Nombre;
-    private String Apellidos;
+public class Usuario extends PersonaVirtual {
     private String Ciudad;
 
     Scanner entrada = new Scanner(System.in);
     //Constructor
     public Usuario(){
-        this.Nombre="";
-        this.Apellidos="";
+        super("",0,"");
         this.Ciudad="";
     }
 
     //Getters & Setters
-    public String getNombre() {
-        return this.Nombre;
-    }
-    public String getApellidos() {
-        return this.Apellidos;
-    }
     public String getCiudad() {
         return this.Ciudad;
-    }
-    public void setNombre(String Nombre1) {
-        this.Nombre = Nombre1;
-    }
-    public void setApellidos(String Apellidos1) {
-        this.Apellidos = Apellidos1;
     }
     public void setCiudad(String Ciudad) {
         this.Ciudad = Ciudad;
     }
 
     //Comportamientos y metodos
-
-
     public void MenuUsuario(){
         int opcion;
         String ciudad;
@@ -48,8 +30,6 @@ public class Usuario {
 
         System.out.print("Ingrese su nombre: ");
         UsuarioActual.setNombre(entrada.nextLine());
-        System.out.print("Ingrese su apellido: ");
-        UsuarioActual.setApellidos(entrada.nextLine());
 
         System.out.print("Ingrese la ciudad donde se encuentra: ");
         ciudad = entrada.nextLine();
