@@ -7,13 +7,12 @@ public class Noticias {
     Scanner leer = new Scanner(System.in);
     ArrayList <Noticias> ListaNoticias = new ArrayList<>();
 
-
     //Atributos
     private String fecha;
     private String URL;
     private String TipoNoticia;
     private String Descripcion;
-    private int idNoticia; //Las ID's >=0
+    private int idNoticia;
 
     public Noticias(){
         //Date fecha = new Date();
@@ -64,16 +63,34 @@ public class Noticias {
 
     //Comportamientos
     public boolean CrearNoticia(){
+        int ID, flag=0;
+        String tipoN;
         Noticias NoticiaNueva = new Noticias();
 
         System.out.print("Tipo de noticia: ");
-        NoticiaNueva.setTipoNoticia(leer.nextLine());
+        tipoN = leer.nextLine();
+        while(!tipoN.matches("[a-zA-Z]*")){
+            System.out.println("Dato incorrecto, ingrese solo letras");
+            System.out.print("Tipo de noticia: ");
+            tipoN = leer.nextLine();
+        }
+        NoticiaNueva.setTipoNoticia(tipoN);
+
         System.out.print("Descripcion de la noticia: "); //Diseñar formato de valides
         NoticiaNueva.setDescripcion(leer.nextLine());
         System.out.print("Ingresar URL de la noticia");
         NoticiaNueva.setURL(leer.nextLine());
-        System.out.print("Ingrese identificador: ");
-        NoticiaNueva.setIdNoticia(leer.nextInt());
+
+        do{
+            System.out.print("Ingrese el numero identificador de la noticia:");
+            NoticiaNueva.setIdNoticia(leer.nextInt());
+            if(NoticiaNueva.getIdNoticia()>0){
+                flag=1;
+            }else{
+                System.out.println("Formato del identificador incorrecto, ingrese solo numeros");
+            }
+        }while(flag==0);
+
         //System.out.print("Fecha de publicacion de la noticia "); -- revisar como pasar de fecha a string
         //this.setFecha(leer.next());
 
@@ -88,5 +105,20 @@ public class Noticias {
             System.out.println("URL: "+this.URL);
             //Colocar tambien la fecha de la noticia
         }
+    }
+
+    public boolean EliminarNoticia(){
+        int id;
+        System.out.println("===========================================");
+        System.out.println("Ingrese identificador de la noticia a eliminar:");
+        id = leer.nextInt();
+
+        for(int i=0; i<ListaNoticias.size(); i++){
+            if(ListaNoticias.get(i).getIdNoticia() == id){
+                ListaNoticias.remove(ListaNoticias.get(i));
+                return true;
+            }
+        }
+        return false;
     }
 }
