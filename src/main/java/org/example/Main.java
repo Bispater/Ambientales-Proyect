@@ -14,7 +14,7 @@ public class Main {
         archivo.leerArchivo("\\..\\..\\resources\\CSVTEST.csv");
         CSVManage ob = new CSVManage();
         String[] header = { "Nombre", "Apellido"};
-        ob.writeCSV("\\src\\main\\resources\\CSVTEST.csv", header);
+        ob.writeCSV("\\..\\..\\resources\\CSVTEST.csv", header);
 
         entrada = new Scanner(System.in);
 
