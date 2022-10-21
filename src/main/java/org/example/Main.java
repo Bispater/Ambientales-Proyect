@@ -11,10 +11,10 @@ public class Main {
 
         // LECTURA ARCHIVO
         CSVFile archivo = new CSVFile();
-        archivo.leerArchivo("\\src\\main\\resources\\CSVTEST.csv");
+        archivo.leerArchivo("");
         CSVManage ob = new CSVManage();
         String[] header = { "Nombre", "Apellido"};
-        ob.writeCSV("\\src\\main\\resources\\CSVTEST.csv", header);
+        ob.writeCSV("", header);
         //Fabian
 
         entrada = new Scanner(System.in);
