@@ -84,7 +84,7 @@ public class Noticias {
         do{
             System.out.print("Ingrese el numero identificador de la noticia:");
             NoticiaNueva.setIdNoticia(leer.nextInt());
-            if(NoticiaNueva.getIdNoticia()>0 ){
+            if( verificarIdExistente(idNoticia, ListaNoticias ) && NoticiaNueva.getIdNoticia()>0 ){
                 flag=1;
             }else{
                 System.out.println("Formato del identificador incorrecto, ingrese solo numeros");
@@ -120,5 +120,16 @@ public class Noticias {
             }
         }
         return false;
+    }
+    public static boolean verificarIdExistente(int id , ArrayList<Noticias>noticias )
+    {
+        for(int i = 0 ; i < noticias.size() ; i++ )
+        {
+            if(noticias.get(i).idNoticia == id) return false ;
+
+
+        }
+
+        return true ;
     }
 }
