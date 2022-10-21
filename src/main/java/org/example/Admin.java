@@ -9,7 +9,7 @@ public class Admin extends PersonaVirtual {
 
     // Constructores
     public Admin() {
-        super("",1,"");
+        super("",1,"0000000-0");
         this.Contrasenia = "a0";
     }
     public Admin(String nombre , int id , String contrasenia) {
@@ -28,63 +28,24 @@ public class Admin extends PersonaVirtual {
     //Comportamientos
     public Admin CrearAdmin() {
         Admin NuevoAdmin;
-        String contrasenia, nombre;
-        int ID, flag=0;
-        Scanner leer = new Scanner(System.in);
-
-        //Valdiacion de formato de datos
-        System.out.print("Inserte nombre de administrador:");
-        nombre = leer.nextLine();
-        while(!nombre.matches("([a-zA-Z]*[ ']+[a-zA-Z]*)*")){
-            System.out.println("El dato es incorrecto, debe escribir solo letras (nombre y apellido separados)");
-            System.out.print("Inserte nombre de administrador: ");
-            nombre = leer.nextLine();
-        }
-
-        do{
-            System.out.print("Ingrese ID:");
-            ID = leer.nextInt();
-
-            //Valdiacion de formato de datos
-            if(ID>0){
-                flag = 1;   //Formato del ID correcto
-            }
-            else {
-                System.out.println("Formato del identificador incorrecto, debe escribir solo numeros");
-            }
-        }while(flag==0);
+        String Contrasenia, nombre = "", Rut = "";
+        int ID=0;
+        CrearPersonaVirtual(nombre,ID,Rut);
 
         System.out.print("Ingrese su contraseña:");
-        contrasenia = leer.next();
-        while(!contrasenia.matches("([a-zA-Z]*+[0-9]*+)*")){
+        Contrasenia = entrada.next();
+        while(!Contrasenia.matches("([a-zA-Z]*+[0-9]*+)*")){
             System.out.println("Formato incorrecto, debe recibir al menos una letra y un numero");
             System.out.print("Ingrese contraseña:");
-            contrasenia = leer.next();
+            Contrasenia = entrada.next();
         }
 
-        NuevoAdmin = new Admin(nombre,ID,contrasenia);
+        NuevoAdmin = new Admin(nombre,ID,Contrasenia);
         return NuevoAdmin;
     }
-
-    public boolean ValidarAdmin(){
-        int ID, flag=0;
+    public boolean ValidarContrasenia(int Id){
         String contra;
-        Admin adminNuevo = new Admin();
 
-        do{
-            System.out.print("Ingrese ID: ");
-            ID = entrada.nextInt();
-
-            //Valdiacion de formato de datos
-            if(ID>0){
-                flag = 1;   //Formato del ID correcto
-            }
-            else {
-                System.out.println("Formato del identificador incorrecto, ingrese solo numeros");
-            }
-        }while(flag==0);
-
-        //Valdiacion de formato de datos
         System.out.print("Ingrese contraseña: ");
         contra = entrada.next();
         while(!contra.matches("([a-zA-Z]*+[0-9]*+)*")){ //Revisar
@@ -92,16 +53,62 @@ public class Admin extends PersonaVirtual {
             System.out.print("Ingrese contraseña: ");
             contra = entrada.next();
         }
-        administradores.add(adminNuevo); //Usuario admin por defecto para poder ingresar y comparar en la coleccion.
-
         for(int i=0; i<administradores.size(); i++){
-            if(administradores.get(i).getId() == ID && administradores.get(i).getContrasenia().equals(contra)){
-                System.out.println("------------Acceso permitido--------------");
-                return true;
+            if(administradores.get(i).getId() == Id){
+                if(administradores.get(i).getContrasenia().equals(contra)){
+                    System.out.println("------------Acceso permitido--------------");
+                    return true;
+                }
             }
         }
         System.out.println("Acceso denegado - intente nuevamente");
         return false;
+    }
+
+    public boolean ValidarAdmin(){
+        int ID, flag=0;
+        String contra;
+        Admin adminNuevo = new Admin();
+        administradores.add(adminNuevo); //Usuario admin por defecto para poder ingresar y comparar en la coleccion.
+
+        if(ValidarPersonaVirtual(administradores) && ValidarContrasenia(getId())){
+            return true;
+        }
+        System.out.println("Acceso denegado - intente nuevamente");
+        return false;
+    }
+
+    public void CambiarContrasenia(){
+        int Id,flag=0;
+        String contra;
+
+        do{
+            System.out.print("Ingrese ID:");
+            Id = entrada.nextInt();
+            //Valdiacion de formato de datos
+            if(Id>0){
+                flag = 1;   //Formato del ID correcto
+            }
+            else {
+                System.out.println("Formato del identificador incorrecto, debe escribir solo numeros");
+            }
+        }while(flag==0);
+
+        if(ValidarContrasenia(Id)){
+            //CAMBIO DE CONTRASEÑA
+            System.out.print("Ingrese nueva contraseña: ");
+            contra = entrada.next();
+            while(!contra.matches("([a-zA-Z]*+[0-9]*+)*")){
+                System.out.println("El dato es incorrecto, debe recibir al menos una letra y numero");
+                System.out.print("Ingrese nueva contraseña: ");
+                contra = entrada.next();
+            }
+            setContrasenia(contra);
+            System.out.println("¡Su contraseña se actualizo con exito!");
+        }
+        else{
+            System.out.println("Error al cambiar la contraseña :(");
+        }
     }
 
     public void MenuAdministrador(){
@@ -112,8 +119,9 @@ public class Admin extends PersonaVirtual {
             do {
                 System.out.println("================MENU ADMINISTRADOR====================");
                 System.out.println("ELIJA UNA OPCION:");
-                System.out.println("1) Mostrar puntos de reciclaje\n2) Agregar administrador\n3) Agregar punto de reciclaje\n4) Agregar noticia\n5) Eliminar punto de reciclaje\n6) Eliminar noticia");
-                System.out.println("7) Presione 0 para salir");
+                System.out.println("0) Presione 0 para salir");
+                System.out.println("1) Mostrar puntos de reciclaje\n2) Agregar administrador\n3) Agregar punto de reciclaje\n4) Agregar noticia");
+                System.out.println("5) Eliminar punto de reciclaje\n6) Eliminar noticia\n7) Cambiar contraseña\n8) Actualizar punto de reciclaje");
                 System.out.print("OPCION:");
                 int opcion = entrada.nextInt();
 
@@ -121,7 +129,7 @@ public class Admin extends PersonaVirtual {
                     case 0:
                         return;
                     case 1:
-                        ptoNuevo.MostrarPtoReciclaje(); //Se manda a la clase PuntoReciclaje ya que necesita la lista
+                        ptoNuevo.MostrarPtoReciclaje();
                         break;
                     case 2:
                         administradores.add(CrearAdmin());
@@ -152,6 +160,14 @@ public class Admin extends PersonaVirtual {
                         else {
                             System.out.println("Noticia inexistente, intente nuevamente...");
                         }
+                        break;
+                    case 7:
+                        System.out.println("===============================================");
+                        System.out.println("--------Identificador de administrador---------");
+                        CambiarContrasenia();
+                        break;
+                    case 8:
+                        ptoNuevo.ActualizarPtoReciclaje();
                         break;
                     default:
                         System.out.println("No se seleciono ninguna opcion valida, vuelva intentarlo");

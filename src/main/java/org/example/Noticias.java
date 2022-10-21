@@ -110,7 +110,7 @@ public class Noticias {
     public boolean EliminarNoticia(){
         int id;
         System.out.println("===========================================");
-        System.out.println("Ingrese identificador de la noticia a eliminar:");
+        System.out.print("Ingrese identificador de la noticia a eliminar:");
         id = leer.nextInt();
 
         for(int i=0; i<ListaNoticias.size(); i++){

@@ -177,7 +177,7 @@ public class PuntoReciclaje {
     public boolean EliminarPtoReciclaje(){
         int id;
         System.out.println("===========================================");
-        System.out.println("Ingrese identificador del punto de reciclaje:");
+        System.out.print("Ingrese identificador del punto de reciclaje:");
         id = leer.nextInt();
 
         for(int i=0; i<puntosReciclaje.size(); i++){
@@ -187,5 +187,26 @@ public class PuntoReciclaje {
             }
         }
         return false;
+    }
+
+    public void ActualizarPtoReciclaje(){
+        int Id,flag=0;
+        do{
+            System.out.println("Numero identificador del punto de reciclaje a actualizar");
+            System.out.print("Ingrese ID:");
+            Id = leer.nextInt();
+            if(Id>0){
+                flag=1;
+            }else{
+                System.out.println("Formato del identificador incorrecto, ingrese solo numeros");
+            }
+        }while(flag==0);
+
+        for(int i=0; i<puntosReciclaje.size(); i++){
+            if(puntosReciclaje.get(i).getId() == Id){
+                System.out.println("¡¡Punto de reciclaje encontrado!! - Ingrese nuevos datos.....");
+                CrearPuntoReciclaje();
+            }
+        }
     }
 }
