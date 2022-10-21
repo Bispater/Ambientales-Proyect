@@ -1,7 +1,11 @@
-package org.example;
-import java.io.*;
+
+package Programa_Principal;
+import Manejo_Csv.CSVFile;
+import Manejo_Csv.CSVManage;
+import Usuarios.Admin;
+import Usuarios.UsuarioComun;
+
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
     public static Scanner entrada;
@@ -11,11 +15,11 @@ public class Main {
 
         // LECTURA ARCHIVO
         CSVFile archivo = new CSVFile();
-        archivo.leerArchivo("\\src\\main\\resources\\CSVTEST.csv");
+        archivo.leerArchivo("\\..\\..\\main\\resources\\CSVTEST.csv");
         CSVManage ob = new CSVManage();
         String[] header = { "Nombre", "Apellido"};
-        ob.writeCSV("\\src\\main\\resources\\CSVTEST.csv", header);
-        //Fabian
+        ob.writeCSV("\\..\\..\\main\\resources\\CSVTEST.csv", header);
+
 
         entrada = new Scanner(System.in);
 
@@ -30,7 +34,7 @@ public class Main {
 
             //Prueba
             Admin adminDefecto = new Admin(); //Admin por defecto para poder ingresar
-            Usuario usuarioDefecto = new Usuario();
+            UsuarioComun usuarioComunDefecto = new UsuarioComun();
             //administradores.add(adm1);
             //PuntoReciclaje pto1 = new PuntoReciclaje();
             //pto1.CrearPuntoReciclaje();
@@ -43,7 +47,7 @@ public class Main {
                     adminDefecto.MenuAdministrador();
                     break ;
                 case 2 :
-                    usuarioDefecto.MenuUsuario();
+                    usuarioComunDefecto.MenuUsuario();
                     break;
                 case 0 :
                     return;

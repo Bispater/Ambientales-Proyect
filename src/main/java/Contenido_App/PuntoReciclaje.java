@@ -1,4 +1,4 @@
-package org.example;
+package Contenido_App;
 import java.util.Scanner;
 import java.util.ArrayList;
 public class PuntoReciclaje {
@@ -124,7 +124,7 @@ public class PuntoReciclaje {
         do{
             System.out.print("Ingrese el numero identificador:");
             ptoNuevo.setId(leer.nextInt());
-            if(ptoNuevo.getId()>0){
+            if(ptoNuevo.getId()>0 && ComprobarIdExistente(ptoNuevo.getId(), puntosReciclaje) ){
                 flag=1;
             }else{
                 System.out.println("Formato del identificador incorrecto, ingrese solo numeros");
@@ -188,4 +188,16 @@ public class PuntoReciclaje {
         }
         return false;
     }
+    public static boolean ComprobarIdExistente(int id , ArrayList<PuntoReciclaje> ptos ) //Funcion que revisa en array para que no se repitan los ids.
+    {
+        for(int i =0 ; i < ptos.size() ; i++ )
+        {
+            if(ptos.get(i).getId() == id ){
+                return false ;
+            }
+
+        }
+        return true ;
+    }
+
 }

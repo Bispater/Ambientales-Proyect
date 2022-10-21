@@ -1,11 +1,11 @@
-package org.example;
+package Manejo_Csv;
 
 import java.io.*;
 
 public class CSVManage {
 
     //void writeCSV(String file, String index, String number)
-    void writeCSV(String file, String[] header ){
+    public void writeCSV(String file, String[] header){
         try {
             /*
             This function write into CSV file. Receive a string with name file, an index and a number that will be saved.

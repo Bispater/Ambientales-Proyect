@@ -1,4 +1,4 @@
-package org.example;
+package Manejo_Csv;
 
 import javax.swing.*;
 import java.io.BufferedReader;

@@ -1,4 +1,7 @@
-package org.example;
+package Usuarios;
+import Contenido_App.Noticias;
+import Contenido_App.PuntoReciclaje;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -10,6 +13,10 @@ public class Admin {
 
     Scanner entrada = new Scanner(System.in);
     ArrayList <Admin> administradores = new ArrayList<>();
+
+    //Cargar en arrayList administradores datos del csv (leer csv )
+
+
 
     // Constructores
     public Admin() {
@@ -109,13 +116,14 @@ public class Admin {
         System.out.print("Ingrese contraseña: ");
         contra = entrada.next();
         while(!contra.matches("([a-zA-Z]*+[0-9]*+)*")){ //REvisar
+
             System.out.println("El dato es incorrecto, debe recibir al menos una letra y numero");
             System.out.print("Ingrese contraseña: ");
             contra = entrada.next();
         }
         administradores.add(adminNuevo); //Usuario admin por defecto para poder ingresar.
 
-        for(int i=0; i<administradores.size(); i++){
+        for(int i=0; validador!=1 || i<administradores.size(); i++){
             if(administradores.get(i).getId() == ID && administradores.get(i).getContrasenia().equals(contra)){
                 adminNuevo = administradores.get(i);
                 System.out.println("------------Acceso permitido--------------");

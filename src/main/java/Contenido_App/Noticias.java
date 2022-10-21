@@ -1,11 +1,11 @@
-package org.example;
+package Contenido_App;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Noticias {
     Scanner leer = new Scanner(System.in);
     ArrayList <Noticias> ListaNoticias = new ArrayList<>();
+
 
     //Atributos
     private String fecha;
@@ -84,7 +84,7 @@ public class Noticias {
         do{
             System.out.print("Ingrese el numero identificador de la noticia:");
             NoticiaNueva.setIdNoticia(leer.nextInt());
-            if(NoticiaNueva.getIdNoticia()>0){
+            if(NoticiaNueva.getIdNoticia()>0 ){
                 flag=1;
             }else{
                 System.out.println("Formato del identificador incorrecto, ingrese solo numeros");
